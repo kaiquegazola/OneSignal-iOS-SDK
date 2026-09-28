@@ -84,4 +84,21 @@ static NSString *const kAppId = @"11111111-2222-3333-4444-555555555555";
     XCTAssertTrue(failed);
 }
 
+- (void)testReceiveReceiptRechecksGateAfterDelay {
+    [OneSignalUserDefaults.initShared saveBoolForKey:OSUD_RECEIVE_RECEIPTS_ENABLED withValue:YES];
+    [OneSignal setAutoInitAllowed:YES];
+    XCTestExpectation *skipped = [self expectationWithDescription:@"receipt skipped after delay"];
+    [[OneSignalReceiveReceiptsController new] sendReceiveReceiptWithPlayerId:@"player" notificationId:@"notif" appId:kAppId delay:1 successBlock:^(NSDictionary *result) {
+        XCTFail(@"receipt must not be sent");
+    } failureBlock:^(NSError *error) {
+        // nil error = skipped by the gate; a sent request would fail with a network/HTTP error
+        XCTAssertNil(error);
+        [skipped fulfill];
+    }];
+    // Disallowed during the delay, before the request is executed
+    [OneSignal setAutoInitAllowed:NO];
+    [self waitForExpectationsWithTimeout:5 handler:nil];
+    [OneSignalUserDefaults.initShared removeValueForKey:OSUD_RECEIVE_RECEIPTS_ENABLED];
+}
+
 @end
