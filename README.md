@@ -19,6 +19,13 @@ that fails under user script sandboxing). The prebuilt upstream binaries keep th
 manifests; host apps must merge the entries of `iOS_SDK/OneSignalSDK/Source/PrivacyInfo.xcprivacy`
 into their own `PrivacyInfo.xcprivacy`.
 
+Closing the gate (`setAutoInitAllowed:NO`) also silences an SDK already running in the process and
+the notification service extension: privacy consent is required (written directly, even when
+`ios_params` said it isn't) and withdrawn, so every non-GET request (sessions, user updates, receive
+receipts) is blocked, and receive receipts are turned off. While the gate is closed `ios_params`
+cannot re-enable receipts or drop the consent requirement. `initialize` plus
+`setConsentGiven:YES` resume it.
+
 Upgrade behaviour: the gate defaults to **not allowed**, so after upgrading to this fork a device
 that should stay on OneSignal does not start the SDK (and gets no OneSignal pushes that need it)
 until the app is opened and calls `OneSignal.initialize`, which persists the gate as allowed. This is

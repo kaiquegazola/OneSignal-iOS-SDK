@@ -301,6 +301,23 @@ static OneSignalReceiveReceiptsController* _receiveReceiptsController;
 
 + (void)setAutoInitAllowed:(BOOL)allowed {
     [OneSignalUserDefaults.initShared saveBoolForKey:OSUD_AUTO_INIT_ALLOWED withValue:allowed];
+    if (!allowed) {
+        [self silenceWhileAutoInitDisallowed];
+    }
+}
+
+/*
+ Fork: closing the gate must also silence an SDK already running in this process and the
+ notification service extension. Require privacy consent (written directly, bypassing the
+ "already set by remote params" guard of setRequiresPrivacyConsent:) and withdraw it, so every
+ non-GET request (sessions, user updates, receive receipts) is blocked, and turn receive
+ receipts off. initialize + setConsentGiven:YES undo it; ios_params can't while the gate is off.
+ */
++ (void)silenceWhileAutoInitDisallowed {
+    [[OSRemoteParamController sharedController] savePrivacyConsentRequired:YES];
+    [OSPrivacyConsentController consentGranted:NO];
+    [OneSignalUserDefaults.initShared saveBoolForKey:OSUD_RECEIVE_RECEIPTS_ENABLED withValue:NO];
+    [OSResilientStorage setString:@"0" forKey:OSResilientStorage.keyReceiveReceiptsEnabled];
 }
 
 + (BOOL)isAutoInitAllowed {
@@ -817,7 +834,11 @@ static BOOL ComputeInitialStorageReadable(void) {
             [OSNotificationsManager checkProvisionalAuthorizationStatus];
         }
 
-        if (result[IOS_RECEIVE_RECEIPTS_ENABLE] != (id)[NSNull null]) {
+        // Fork: while the auto-init gate is closed, ios_params must not re-enable receipts or
+        // drop the privacy consent requirement that keeps a running SDK silent.
+        BOOL gateClosed = ![self isAutoInitAllowed];
+
+        if (!gateClosed && result[IOS_RECEIVE_RECEIPTS_ENABLE] != (id)[NSNull null]) {
             BOOL enabled = [result[IOS_RECEIVE_RECEIPTS_ENABLE] boolValue];
             [OneSignalUserDefaults.initShared saveBoolForKey:OSUD_RECEIVE_RECEIPTS_ENABLED withValue:enabled];
             // Mirror to the unencrypted cache so the NSE can read this flag
@@ -835,7 +856,7 @@ static BOOL ComputeInitialStorageReadable(void) {
         }
         
         if ([[OSRemoteParamController sharedController] hasPrivacyConsentKey]) {
-            BOOL required = [result[IOS_REQUIRES_USER_PRIVACY_CONSENT] boolValue];
+            BOOL required = [result[IOS_REQUIRES_USER_PRIVACY_CONSENT] boolValue] || gateClosed;
             [[OSRemoteParamController sharedController] savePrivacyConsentRequired:required];
             [OSPrivacyConsentController setRequiresPrivacyConsent:required];
         }

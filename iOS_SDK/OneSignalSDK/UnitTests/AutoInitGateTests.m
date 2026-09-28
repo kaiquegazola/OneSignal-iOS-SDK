@@ -33,6 +33,18 @@
 
 @interface OneSignal (AutoInitGateTests)
 + (void)setAppId:(nullable NSString*)newAppId;
++ (void)downloadIOSParamsWithAppId:(NSString *)appId;
+@end
+
+/// Answers every request synchronously with a fixed ios_params payload.
+@interface AutoInitGateParamsClient : NSObject <IOneSignalClient>
+@property (nonatomic, copy) NSDictionary *params;
+@end
+
+@implementation AutoInitGateParamsClient
+- (void)executeRequest:(OneSignalRequest *)request onSuccess:(OSResultSuccessBlock)successBlock onFailure:(OSClientFailureBlock)failureBlock {
+    if (successBlock) successBlock(self.params);
+}
 @end
 
 @interface AutoInitGateTests : XCTestCase
@@ -98,6 +110,53 @@ static NSString *const kAppId = @"11111111-2222-3333-4444-555555555555";
     // Disallowed during the delay, before the request is executed
     [OneSignal setAutoInitAllowed:NO];
     [self waitForExpectationsWithTimeout:5 handler:nil];
+    [OneSignalUserDefaults.initShared removeValueForKey:OSUD_RECEIVE_RECEIPTS_ENABLED];
+}
+
+- (void)testClosingGateSilencesEvenWhenRemoteParamsDidNotRequireConsent {
+    // ios_params already stored "consent not required" and consent was granted.
+    [[OSRemoteParamController sharedController] saveRemoteParams:@{IOS_REQUIRES_USER_PRIVACY_CONSENT: @NO}];
+    [[OSRemoteParamController sharedController] savePrivacyConsentRequired:NO];
+    [OSPrivacyConsentController consentGranted:YES];
+    [OneSignalUserDefaults.initShared saveBoolForKey:OSUD_RECEIVE_RECEIPTS_ENABLED withValue:YES];
+    XCTAssertFalse([OSPrivacyConsentController requiresUserPrivacyConsent]);
+
+    [OneSignal setAutoInitAllowed:NO];
+
+    // Non-GET requests (sessions, user updates, receipts) are now blocked.
+    XCTAssertTrue([OSPrivacyConsentController requiresUserPrivacyConsent]);
+    XCTAssertFalse([OneSignalUserDefaults.initShared getSavedBoolForKey:OSUD_RECEIVE_RECEIPTS_ENABLED defaultValue:YES]);
+    XCTAssertEqualObjects([OSResilientStorage stringForKey:OSResilientStorage.keyReceiveReceiptsEnabled], @"0");
+
+    // Giving consent again resumes.
+    [OSPrivacyConsentController consentGranted:YES];
+    XCTAssertFalse([OSPrivacyConsentController requiresUserPrivacyConsent]);
+
+    [OneSignalUserDefaults.initShared removeValueForKey:OSUD_REQUIRES_USER_PRIVACY_CONSENT];
+    [OneSignalUserDefaults.initShared removeValueForKey:GDPR_CONSENT_GRANTED];
+    [OneSignalUserDefaults.initShared removeValueForKey:OSUD_RECEIVE_RECEIPTS_ENABLED];
+}
+
+- (void)testIosParamsDoNotUndoSilencingWhileGateClosed {
+    [OneSignal setAutoInitAllowed:NO];
+    AutoInitGateParamsClient *client = [AutoInitGateParamsClient new];
+    client.params = @{IOS_REQUIRES_USER_PRIVACY_CONSENT: @NO, IOS_RECEIVE_RECEIPTS_ENABLE: @YES};
+    [OneSignalCoreImpl setSharedClient:client];
+
+    [OneSignal downloadIOSParamsWithAppId:kAppId];
+
+    XCTAssertTrue([OSPrivacyConsentController requiresUserPrivacyConsent]);
+    XCTAssertFalse([OneSignalUserDefaults.initShared getSavedBoolForKey:OSUD_RECEIVE_RECEIPTS_ENABLED defaultValue:YES]);
+
+    // With the gate open, ios_params apply as upstream.
+    [OneSignal setAutoInitAllowed:YES];
+    [OneSignal downloadIOSParamsWithAppId:kAppId];
+    XCTAssertTrue([OneSignalUserDefaults.initShared getSavedBoolForKey:OSUD_RECEIVE_RECEIPTS_ENABLED defaultValue:NO]);
+    XCTAssertFalse([OneSignalUserDefaults.initShared getSavedBoolForKey:OSUD_REQUIRES_USER_PRIVACY_CONSENT defaultValue:YES]);
+
+    [OneSignalCoreImpl setSharedClient:OneSignalClient.sharedClient];
+    [OneSignalUserDefaults.initShared removeValueForKey:OSUD_REQUIRES_USER_PRIVACY_CONSENT];
+    [OneSignalUserDefaults.initShared removeValueForKey:GDPR_CONSENT_GRANTED];
     [OneSignalUserDefaults.initShared removeValueForKey:OSUD_RECEIVE_RECEIPTS_ENABLED];
 }
 
