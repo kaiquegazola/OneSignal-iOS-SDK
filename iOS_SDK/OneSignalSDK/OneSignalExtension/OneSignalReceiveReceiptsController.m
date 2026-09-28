@@ -94,6 +94,15 @@
         return;
     }
     
+    // Same gate as OneSignal initialize:nil. The NSE never initializes the SDK, so only send receipts
+    // once the host app has explicitly initialized (or allowed auto init).
+    if (![OneSignalUserDefaults.initShared getSavedBoolForKey:OSUD_AUTO_INIT_ALLOWED defaultValue:NO]) {
+        [OneSignalLog onesignalLog:ONE_S_LL_DEBUG message:@"Auto init not allowed, skipping receive receipt"];
+        if (failure)
+            failure(nil);
+        return;
+    }
+
     if (![self isReceiveReceiptsEnabled]) {
         [OneSignalLog onesignalLog:ONE_S_LL_DEBUG message:@"Receieve receipts disabled"];
         if (failure)

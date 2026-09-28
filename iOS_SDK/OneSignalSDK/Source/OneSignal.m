@@ -243,6 +243,12 @@ static OneSignalReceiveReceiptsController* _receiveReceiptsController;
  Note: wrappers may call this method with a null appId.
  */
 + (void)initialize:(nonnull NSString*)newAppId withLaunchOptions:(nullable NSDictionary*)launchOptions {
+    if (newAppId.length > 0) {
+        [self setAutoInitAllowed:YES];
+    } else if (![self isAutoInitAllowed]) {
+        [OneSignalLog onesignalLog:ONE_S_LL_INFO message:@"initialize called without an appId and auto init is not allowed, skipping OneSignal init."];
+        return;
+    }
     [OSRemoteLoggingController configureFromCacheForAppId:newAppId ?: OneSignalIdentifiers.storedAppId];
     [self setAppId:newAppId];
     [self setLaunchOptions:launchOptions];
@@ -259,6 +265,10 @@ static OneSignalReceiveReceiptsController* _receiveReceiptsController;
     [OneSignalLog onesignalLog:ONE_S_LL_VERBOSE message:[NSString stringWithFormat:@"setAppId called with appId: %@!", newAppId]];
 
     if (!newAppId || newAppId.length == 0) {
+        if (![self isAutoInitAllowed]) {
+            [OneSignalLog onesignalLog:ONE_S_LL_INFO message:@"setAppId called without an appId and auto init is not allowed, not using the cached appId."];
+            return;
+        }
         NSString* cachedAppId = OneSignalIdentifiers.storedAppId;
         if (cachedAppId) {
             [OneSignalLog onesignalLog:ONE_S_LL_INFO message:[NSString stringWithFormat:@"Initializing OneSignal with cached appId: '%@'.", cachedAppId]];
@@ -277,6 +287,14 @@ static OneSignalReceiveReceiptsController* _receiveReceiptsController;
     }
 
     [self handleAppIdChange:OneSignalIdentifiers.currentAppId];
+}
+
++ (void)setAutoInitAllowed:(BOOL)allowed {
+    [OneSignalUserDefaults.initShared saveBoolForKey:OSUD_AUTO_INIT_ALLOWED withValue:allowed];
+}
+
++ (BOOL)isAutoInitAllowed {
+    return [OneSignalUserDefaults.initShared getSavedBoolForKey:OSUD_AUTO_INIT_ALLOWED defaultValue:NO];
 }
 
 + (BOOL)isValidAppId:(NSString*)appId {

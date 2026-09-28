@@ -49,6 +49,7 @@
 #define ONESIGNAL_VERSION                                                   @"050700"
 
 #define OSUD_APP_ID                                                         @"GT_APP_ID"                                                        // * OSUD_APP_ID
+#define OSUD_AUTO_INIT_ALLOWED                                              @"onesignal_auto_init_allowed"                                      // OSUD_AUTO_INIT_ALLOWED
 #define OSUD_REGISTERED_WITH_APPLE                                          @"GT_REGISTERED_WITH_APPLE"                                         // * OSUD_REGISTERED_WITH_APPLE
 #define OSUD_APP_PROVIDES_NOTIFICATION_SETTINGS                             @"OS_APP_PROVIDES_NOTIFICATION_SETTINGS"                            // * OSUD_APP_PROVIDES_NOTIFICATION_SETTINGS
 #define OSUD_PROMPT_BEFORE_NOTIFICATION_LAUNCH_URL_OPENS                    @"PROMPT_BEFORE_OPENING_PUSH_URL"                                   // * OSUD_PROMPT_BEFORE_NOTIFICATION_LAUNCH_URL_OPENS
