@@ -79,11 +79,6 @@ NS_SWIFT_NAME(login(externalId:token:));
 #pragma mark Initialization
 + (void)initialize:(nonnull NSString*)newAppId withLaunchOptions:(nullable NSDictionary*)launchOptions;
 + (void)setProvidesNotificationSettingsView:(BOOL)providesView;
-/**
- * Controls whether the SDK may initialize itself with the cached app id (e.g. `initialize:nil` from a wrapper SDK).
- * Persisted; defaults to NO. An explicit `initialize:` with a non-empty app id always works and sets this to YES.
- */
-+ (void)setAutoInitAllowed:(BOOL)allowed;
 
 #pragma mark Live Activity
 + (Class<OSLiveActivities>)LiveActivities NS_REFINED_FOR_SWIFT;

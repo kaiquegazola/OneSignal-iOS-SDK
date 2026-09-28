@@ -1,8 +1,8 @@
 {
   "ABIRoot": {
     "kind": "Root",
-    "name": "OneSignalFramework",
-    "printedName": "OneSignalFramework",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
     "children": [
       {
         "kind": "Import",
@@ -116,7 +116,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "OSUser",
-                "printedName": "any OneSignalUser.OSUser",
+                "printedName": "OneSignalUser.OSUser",
                 "usr": "c:@M@OneSignalUser@objc(pl)OSUser"
               }
             ],
@@ -138,7 +138,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "OSUser",
-                    "printedName": "any OneSignalUser.OSUser",
+                    "printedName": "OneSignalUser.OSUser",
                     "usr": "c:@M@OneSignalUser@objc(pl)OSUser"
                   }
                 ],
@@ -163,7 +163,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ExistentialMetatype",
-                "printedName": "any OneSignalNotifications.OSNotifications.Type",
+                "printedName": "OneSignalNotifications.OSNotifications.Type",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -192,7 +192,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "ExistentialMetatype",
-                    "printedName": "any OneSignalNotifications.OSNotifications.Type",
+                    "printedName": "OneSignalNotifications.OSNotifications.Type",
                     "children": [
                       {
                         "kind": "TypeNominal",
@@ -224,7 +224,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ExistentialMetatype",
-                "printedName": "any OneSignalOutcomes.OSSession.Type",
+                "printedName": "OneSignalOutcomes.OSSession.Type",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -253,7 +253,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "ExistentialMetatype",
-                    "printedName": "any OneSignalOutcomes.OSSession.Type",
+                    "printedName": "OneSignalOutcomes.OSSession.Type",
                     "children": [
                       {
                         "kind": "TypeNominal",
@@ -285,7 +285,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ExistentialMetatype",
-                "printedName": "any OneSignalCore.OSInAppMessages.Type",
+                "printedName": "OneSignalCore.OSInAppMessages.Type",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -314,7 +314,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "ExistentialMetatype",
-                    "printedName": "any OneSignalCore.OSInAppMessages.Type",
+                    "printedName": "OneSignalCore.OSInAppMessages.Type",
                     "children": [
                       {
                         "kind": "TypeNominal",
@@ -346,7 +346,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ExistentialMetatype",
-                "printedName": "any OneSignalCore.OSDebug.Type",
+                "printedName": "OneSignalCore.OSDebug.Type",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -375,7 +375,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "ExistentialMetatype",
-                    "printedName": "any OneSignalCore.OSDebug.Type",
+                    "printedName": "OneSignalCore.OSDebug.Type",
                     "children": [
                       {
                         "kind": "TypeNominal",
@@ -407,7 +407,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ExistentialMetatype",
-                "printedName": "any OneSignalCore.OSLocation.Type",
+                "printedName": "OneSignalCore.OSLocation.Type",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -436,7 +436,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "ExistentialMetatype",
-                    "printedName": "any OneSignalCore.OSLocation.Type",
+                    "printedName": "OneSignalCore.OSLocation.Type",
                     "children": [
                       {
                         "kind": "TypeNominal",
@@ -468,7 +468,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ExistentialMetatype",
-                "printedName": "any OneSignalOSCore.OSLiveActivities.Type",
+                "printedName": "OneSignalOSCore.OSLiveActivities.Type",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -497,7 +497,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "ExistentialMetatype",
-                    "printedName": "any OneSignalOSCore.OSLiveActivities.Type",
+                    "printedName": "OneSignalOSCore.OSLiveActivities.Type",
                     "children": [
                       {
                         "kind": "TypeNominal",
@@ -538,20 +538,6 @@
           "ObjectiveC.NSObject"
         ],
         "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -651,7 +637,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "OSLogListener",
-                "printedName": "any OneSignalCore.OSLogListener",
+                "printedName": "OneSignalCore.OSLogListener",
                 "usr": "c:objc(pl)OSLogListener"
               }
             ],
@@ -681,7 +667,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "OSLogListener",
-                "printedName": "any OneSignalCore.OSLogListener",
+                "printedName": "OneSignalCore.OSLogListener",
                 "usr": "c:objc(pl)OSLogListener"
               }
             ],
@@ -709,23 +695,7 @@
           "ObjC",
           "Dynamic"
         ],
-        "isExternal": true,
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          }
-        ]
+        "isExternal": true
       },
       {
         "kind": "TypeDecl",
@@ -837,7 +807,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "OSInAppMessageLifecycleListener",
-                "printedName": "any OneSignalCore.OSInAppMessageLifecycleListener",
+                "printedName": "OneSignalCore.OSInAppMessageLifecycleListener",
                 "usr": "c:objc(pl)OSInAppMessageLifecycleListener"
               }
             ],
@@ -864,7 +834,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "OSInAppMessageLifecycleListener",
-                "printedName": "any OneSignalCore.OSInAppMessageLifecycleListener",
+                "printedName": "OneSignalCore.OSInAppMessageLifecycleListener",
                 "usr": "c:objc(pl)OSInAppMessageLifecycleListener"
               }
             ],
@@ -891,7 +861,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "OSInAppMessageClickListener",
-                "printedName": "any OneSignalCore.OSInAppMessageClickListener",
+                "printedName": "OneSignalCore.OSInAppMessageClickListener",
                 "usr": "c:objc(pl)OSInAppMessageClickListener"
               }
             ],
@@ -918,7 +888,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "OSInAppMessageClickListener",
-                "printedName": "any OneSignalCore.OSInAppMessageClickListener",
+                "printedName": "OneSignalCore.OSInAppMessageClickListener",
                 "usr": "c:objc(pl)OSInAppMessageClickListener"
               }
             ],
@@ -943,23 +913,7 @@
           "ObjC",
           "Dynamic"
         ],
-        "isExternal": true,
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          }
-        ]
+        "isExternal": true
       },
       {
         "kind": "TypeDecl",
@@ -1010,23 +964,7 @@
           "ObjC",
           "Dynamic"
         ],
-        "isExternal": true,
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          }
-        ]
+        "isExternal": true
       },
       {
         "kind": "TypeDecl",
@@ -1222,7 +1160,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "OSNotificationPermissionObserver",
-                "printedName": "any OneSignalNotifications.OSNotificationPermissionObserver",
+                "printedName": "OneSignalNotifications.OSNotificationPermissionObserver",
                 "usr": "c:objc(pl)OSNotificationPermissionObserver"
               }
             ],
@@ -1249,7 +1187,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "OSNotificationPermissionObserver",
-                "printedName": "any OneSignalNotifications.OSNotificationPermissionObserver",
+                "printedName": "OneSignalNotifications.OSNotificationPermissionObserver",
                 "usr": "c:objc(pl)OSNotificationPermissionObserver"
               }
             ],
@@ -1276,7 +1214,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "OSNotificationClickListener",
-                "printedName": "any OneSignalNotifications.OSNotificationClickListener",
+                "printedName": "OneSignalNotifications.OSNotificationClickListener",
                 "usr": "c:objc(pl)OSNotificationClickListener"
               }
             ],
@@ -1303,7 +1241,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "OSNotificationClickListener",
-                "printedName": "any OneSignalNotifications.OSNotificationClickListener",
+                "printedName": "OneSignalNotifications.OSNotificationClickListener",
                 "usr": "c:objc(pl)OSNotificationClickListener"
               }
             ],
@@ -1328,23 +1266,7 @@
           "ObjC",
           "Dynamic"
         ],
-        "isExternal": true,
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          }
-        ]
+        "isExternal": true
       },
       {
         "kind": "TypeDecl",
@@ -1454,121 +1376,112 @@
           "ObjC",
           "Dynamic"
         ],
-        "isExternal": true,
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          }
-        ]
+        "isExternal": true
       }
     ],
     "json_format_version": 8
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/kaiquegazola\/Desktop\/grupoQ\/onesignal-forks\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
       "kind": "StringLiteral",
       "offset": 1670,
       "length": 21,
       "value": "\"PREFS_OS_INSTALL_ID\""
     },
     {
-      "filePath": "\/Users\/kaiquegazola\/Desktop\/grupoQ\/onesignal-forks\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
       "kind": "StringLiteral",
       "offset": 1740,
       "length": 39,
       "value": "\"PREFS_OS_REMOTE_LOGGING_CONFIGURATION\""
     },
     {
-      "filePath": "\/Users\/kaiquegazola\/Desktop\/grupoQ\/onesignal-forks\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
       "kind": "StringLiteral",
       "offset": 1826,
       "length": 29,
       "value": "\"com.onesignal.logger.flush.\""
     },
     {
-      "filePath": "\/Users\/kaiquegazola\/Desktop\/grupoQ\/onesignal-forks\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
       "kind": "StringLiteral",
       "offset": 2282,
       "length": 39,
       "value": "\"com.onesignal.logger.remote-lifecycle\""
     },
     {
-      "filePath": "\/Users\/kaiquegazola\/Desktop\/grupoQ\/onesignal-forks\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
       "kind": "IntegerLiteral",
       "offset": 2732,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/kaiquegazola\/Desktop\/grupoQ\/onesignal-forks\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
       "kind": "StringLiteral",
       "offset": 2825,
       "length": 9,
       "value": "\"unknown\""
     },
     {
-      "filePath": "\/Users\/kaiquegazola\/Desktop\/grupoQ\/onesignal-forks\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
       "kind": "Array",
       "offset": 2892,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/kaiquegazola\/Desktop\/grupoQ\/onesignal-forks\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
+      "kind": "StringLiteral",
+      "offset": 1416,
+      "length": 25,
+      "value": "\"OneSignalFramework.OSRemoteLoggingController\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingController.swift",
       "kind": "BooleanLiteral",
       "offset": 13132,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/kaiquegazola\/Desktop\/grupoQ\/onesignal-forks\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingConfiguration.swift",
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingConfiguration.swift",
       "kind": "StringLiteral",
       "offset": 1483,
       "length": 16,
       "value": "\"logging_config\""
     },
     {
-      "filePath": "\/Users\/kaiquegazola\/Desktop\/grupoQ\/onesignal-forks\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingConfiguration.swift",
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingConfiguration.swift",
       "kind": "StringLiteral",
       "offset": 1529,
       "length": 11,
       "value": "\"log_level\""
     },
     {
-      "filePath": "\/Users\/kaiquegazola\/Desktop\/grupoQ\/onesignal-forks\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingConfiguration.swift",
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingConfiguration.swift",
       "kind": "StringLiteral",
       "offset": 1573,
       "length": 8,
       "value": "\"app_id\""
     },
     {
-      "filePath": "\/Users\/kaiquegazola\/Desktop\/grupoQ\/onesignal-forks\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingConfiguration.swift",
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingConfiguration.swift",
       "kind": "StringLiteral",
       "offset": 1617,
       "length": 11,
       "value": "\"log_level\""
     },
     {
-      "filePath": "\/Users\/kaiquegazola\/Desktop\/grupoQ\/onesignal-forks\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingConfiguration.swift",
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingConfiguration.swift",
       "kind": "StringLiteral",
       "offset": 1665,
       "length": 12,
       "value": "\"is_enabled\""
     },
     {
-      "filePath": "\/Users\/kaiquegazola\/Desktop\/grupoQ\/onesignal-forks\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingConfiguration.swift",
+      "filePath": "\/Users\/runner\/work\/OneSignal-iOS-SDK\/OneSignal-iOS-SDK\/iOS_SDK\/OneSignalSDK\/Source\/OSRemoteLoggingConfiguration.swift",
       "kind": "BooleanLiteral",
       "offset": 2311,
       "length": 5,
