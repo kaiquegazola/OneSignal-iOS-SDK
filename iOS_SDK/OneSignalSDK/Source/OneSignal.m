@@ -46,8 +46,18 @@
 #import "OSFocusCallParams.h"
 
 #import <OneSignalNotifications/OneSignalNotifications.h>
+#if __has_include(<OneSignalLocation/OneSignalLocationManager.h>)
 #import <OneSignalLocation/OneSignalLocationManager.h>
+#endif
+#if __has_include(<OneSignalInAppMessages/OneSignalInAppMessages.h>)
 #import <OneSignalInAppMessages/OneSignalInAppMessages.h>
+#endif
+
+// Fork: also defined in OneSignalCommonDefines.h; repeated so this file builds against the
+// upstream OneSignalCore binary (CocoaPods source build, see OneSignalXCFramework.podspec).
+#ifndef OSUD_AUTO_INIT_ALLOWED
+#define OSUD_AUTO_INIT_ALLOWED @"onesignal_auto_init_allowed"
+#endif
 
 // TODO: ^ if no longer support ios 9 + 10 after user model, need to address all stuffs
 

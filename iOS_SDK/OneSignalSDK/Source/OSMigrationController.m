@@ -29,7 +29,9 @@ THE SOFTWARE.
 #import "OSMigrationController.h"
 #import <OneSignalOutcomes/OneSignalOutcomes.h>
 #import "OneSignalFramework.h"
+#if __has_include(<OneSignalInAppMessages/OneSignalInAppMessages.h>)
 #import <OneSignalInAppMessages/OneSignalInAppMessages.h>
+#endif
 #import "OneSignalHelper.h"
 
 @interface OneSignal ()

@@ -6,10 +6,20 @@ Pod::Spec.new do |s|
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { "Joseph Kalash" => "joseph@onesignal.com", "Josh Kasten" => "josh@onesignal.com" , "Brad Hesse" => "brad@onesignal.com"}
     
-    s.source           = { :git => "https://github.com/OneSignal/OneSignal-iOS-SDK.git", :tag => s.version.to_s }
+    # Fork: the OneSignal subspec (OneSignalFramework) is compiled from source; every other
+    # module is the upstream, OneSignal-signed 5.7.0 binary. See the OneSignal subspec.
+    s.source           = { :git => "https://github.com/kaiquegazola/OneSignal-iOS-SDK.git", :tag => "5.7.0-noautoinit.2" }
+    s.module_name      = "OneSignalFramework"
+    s.swift_version    = "5.0"
     s.platform         = :ios, '15.0'
     s.pod_target_xcconfig = {
-      'IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]' => '14.0'
+      'IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]' => '14.0',
+      # Source/ uses UIApplication.shared. CocoaPods forces YES when an app extension (NSE, widget)
+      # links the pod; the upstream prebuilt OneSignalFramework was not extension-only either.
+      'APPLICATION_EXTENSION_API_ONLY' => 'NO',
+      # Source/ quote-includes headers of the other modules; CocoaPodsSourceHeaders forwards them
+      # to the prebuilt frameworks (see that folder).
+      'USER_HEADER_SEARCH_PATHS' => '"${PODS_TARGET_SRCROOT}/iOS_SDK/OneSignalSDK/CocoaPodsSourceHeaders"'
     }
     s.requires_arc     = true
     s.default_subspec = "OneSignalComplete"
@@ -84,7 +94,12 @@ Pod::Spec.new do |s|
       ss.dependency 'OneSignalXCFramework/OneSignalNotifications'
       ss.dependency 'OneSignalXCFramework/OneSignalUser'
       ss.dependency 'OneSignalXCFramework/OneSignalLiveActivities'
-      ss.ios.vendored_frameworks = 'iOS_SDK/OneSignalSDK/OneSignal_XCFramework/OneSignalFramework.xcframework'
+      # Fork: built from source (module OneSignalFramework) instead of the prebuilt xcframework.
+      # Only this module can be: CocoaPods compiles all of a pod's sources into ONE framework, and
+      # the other upstream binaries link @rpath/<Module>.framework of their dependencies.
+      ss.source_files = 'iOS_SDK/OneSignalSDK/Source/**/*.{h,m,swift}'
+      ss.public_header_files = 'iOS_SDK/OneSignalSDK/Source/OneSignalFramework.h'
+      ss.resource_bundles = { 'OneSignalFramework_Privacy' => ['iOS_SDK/OneSignalSDK/Source/PrivacyInfo.xcprivacy'] }
     end
 
     s.subspec 'OneSignalComplete' do |ss|
