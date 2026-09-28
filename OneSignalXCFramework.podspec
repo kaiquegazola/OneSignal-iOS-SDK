@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
     
     # Fork: the OneSignal subspec (OneSignalFramework) is compiled from source; every other
     # module is the upstream, OneSignal-signed 5.7.0 binary. See the OneSignal subspec.
-    s.source           = { :git => "https://github.com/kaiquegazola/OneSignal-iOS-SDK.git", :tag => "5.7.0-noautoinit.2" }
+    s.source           = { :git => "https://github.com/kaiquegazola/OneSignal-iOS-SDK.git", :tag => "5.7.0-noautoinit.4" }
     s.module_name      = "OneSignalFramework"
     s.swift_version    = "5.0"
     s.platform         = :ios, '15.0'

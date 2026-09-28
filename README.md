@@ -19,6 +19,11 @@ that fails under user script sandboxing). The prebuilt upstream binaries keep th
 manifests; host apps must merge the entries of `iOS_SDK/OneSignalSDK/Source/PrivacyInfo.xcprivacy`
 into their own `PrivacyInfo.xcprivacy`.
 
+Upgrade behaviour: the gate defaults to **not allowed**, so after upgrading to this fork a device
+that should stay on OneSignal does not start the SDK (and gets no OneSignal pushes that need it)
+until the app is opened and calls `OneSignal.initialize`, which persists the gate as allowed. This is
+intended: devices whose app never runs again stop counting as MAU.
+
 ---
 
 #### Migrating from v4 or earlier?
