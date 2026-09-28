@@ -99,7 +99,13 @@ Pod::Spec.new do |s|
       # the other upstream binaries link @rpath/<Module>.framework of their dependencies.
       ss.source_files = 'iOS_SDK/OneSignalSDK/Source/**/*.{h,m,swift}'
       ss.public_header_files = 'iOS_SDK/OneSignalSDK/Source/OneSignalFramework.h'
-      ss.resource_bundles = { 'OneSignalFramework_Privacy' => ['iOS_SDK/OneSignalSDK/Source/PrivacyInfo.xcprivacy'] }
+      # Fork: no resource_bundles for the privacy manifest. A resource bundle makes CocoaPods add a
+      # "[CP] Copy Pods Resources" script phase to every consuming target, which fails under
+      # ENABLE_USER_SCRIPT_SANDBOXING (e.g. notification service extensions). Apple's signature and
+      # privacy-manifest requirements for commonly used SDKs apply to prebuilt binaries; the upstream
+      # binaries (Core, OSCore, Outcomes, Extension, ...) keep their embedded manifests. This module is
+      # compiled into the host app, so the app's own PrivacyInfo.xcprivacy must declare the entries of
+      # iOS_SDK/OneSignalSDK/Source/PrivacyInfo.xcprivacy.
       # Header-only inputs of the source build; CocoaPods deletes unreferenced files of :git pods.
       ss.preserve_paths = ['iOS_SDK/OneSignalSDK/CocoaPodsSourceHeaders/*.h', 'iOS_SDK/OneSignalSDK/OneSignalCore/Source/OSMacros.h']
     end

@@ -7,6 +7,20 @@
 
 ---
 
+#### Fork: no auto init (`5.7.0-noautoinit.*`)
+
+This fork adds a persisted native gate so the SDK does not self-initialize from a cached app id
+unless the host allowed it (`OneSignal.initialize` sets it to allowed). It is consumed via CocoaPods
+`:git`/`:tag`, and `OneSignalFramework` is compiled from source.
+
+Privacy manifest: the source-built `OneSignalFramework` does **not** ship its
+`PrivacyInfo.xcprivacy` as a resource bundle (that would add a "[CP] Copy Pods Resources" phase
+that fails under user script sandboxing). The prebuilt upstream binaries keep their embedded
+manifests; host apps must merge the entries of `iOS_SDK/OneSignalSDK/Source/PrivacyInfo.xcprivacy`
+into their own `PrivacyInfo.xcprivacy`.
+
+---
+
 #### Migrating from v4 or earlier?
 
 See our [Migration Guide](MIGRATION_GUIDE.md) for detailed instructions on upgrading to v5.x.x.
