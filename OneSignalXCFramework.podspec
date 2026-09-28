@@ -100,6 +100,8 @@ Pod::Spec.new do |s|
       ss.source_files = 'iOS_SDK/OneSignalSDK/Source/**/*.{h,m,swift}'
       ss.public_header_files = 'iOS_SDK/OneSignalSDK/Source/OneSignalFramework.h'
       ss.resource_bundles = { 'OneSignalFramework_Privacy' => ['iOS_SDK/OneSignalSDK/Source/PrivacyInfo.xcprivacy'] }
+      # Header-only inputs of the source build; CocoaPods deletes unreferenced files of :git pods.
+      ss.preserve_paths = ['iOS_SDK/OneSignalSDK/CocoaPodsSourceHeaders/*.h', 'iOS_SDK/OneSignalSDK/OneSignalCore/Source/OSMacros.h']
     end
 
     s.subspec 'OneSignalComplete' do |ss|
