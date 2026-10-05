@@ -97,7 +97,11 @@ Pod::Spec.new do |s|
       # Fork: built from source (module OneSignalFramework) instead of the prebuilt xcframework.
       # Only this module can be: CocoaPods compiles all of a pod's sources into ONE framework, and
       # the other upstream binaries link @rpath/<Module>.framework of their dependencies.
-      ss.source_files = 'iOS_SDK/OneSignalSDK/Source/**/*.{h,m,swift}'
+      # Fork: upstream's OneSignalFramework target also compiles the UIApplication+OneSignal category
+      # (it lives outside Source/). The prebuilt OneSignalInAppMessages binary calls
+      # +[UIApplication applicationIsActive]; without it, showing an IAM crashes (unrecognized selector).
+      ss.source_files = ['iOS_SDK/OneSignalSDK/Source/**/*.{h,m,swift}',
+                         'iOS_SDK/OneSignalSDK/OneSignalInAppMessages/UIApplication+OneSignal.{h,m}']
       ss.public_header_files = 'iOS_SDK/OneSignalSDK/Source/OneSignalFramework.h'
       # Fork: no resource_bundles for the privacy manifest. A resource bundle makes CocoaPods add a
       # "[CP] Copy Pods Resources" script phase to every consuming target, which fails under
